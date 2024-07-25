@@ -7,6 +7,7 @@ const dancingScript = Dancing_Script({
   display: "swap",
 });
 const WordMeanings = ({ meanings }: { meanings: IMeanings[] }) => {
+  console.log(meanings[0]);
   return meanings?.map((meaning, index) => (
     <div key={index}>
       <div className="flex gap-3 justify-start items-center">
