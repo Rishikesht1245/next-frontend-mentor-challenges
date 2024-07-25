@@ -5,15 +5,13 @@ import { Dancing_Script } from "next/font/google";
 
 // moon
 import { IoMoonOutline } from "react-icons/io5";
+import { IoExitOutline } from "react-icons/io5";
 import { HiOutlineSun } from "react-icons/hi2";
 import SearchInput from "@/components/dictionary/SearchInput";
 import WordandAudio from "@/components/dictionary/WordandAudio";
 import { IResult } from "@/interfaces/dictionaryInterfaces";
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  display: "swap",
-});
+import WordMeanings from "@/components/dictionary/WordMeanings";
+import Link from "next/link";
 
 const page = () => {
   const [result, setResult] = useState<IResult | null>(null);
@@ -21,9 +19,8 @@ const page = () => {
     document.documentElement.classList.toggle("dark");
   };
 
-  console.log(result, "=== result");
   return (
-    <div className="max-w-4xl w-full mx-auto mt-10 border rounded-md p-10 flex flex-col gap-10">
+    <div className="max-w-4xl w-full mx-auto mt-20 border rounded-md p-10 flex flex-col gap-10 ">
       {/* dictionary header */}
       <header className="flex justify-between items-center">
         <PiBookLight className="text-4xl text-gray-500" />
@@ -57,16 +54,19 @@ const page = () => {
             word={result?.word}
             phonetics={result?.phonetics?.filter((phonetic) => phonetic?.audio)}
           />
-          {/* noun meaning */}
-          <div className="flex gap-3 justify-start items-center">
-            <span className={`${dancingScript?.className} text-3xl`}>noun</span>
-            <hr className="w-full mt-2"></hr>
-          </div>
-
-          {/* Verb meaning */}
-          <div className="flex gap-3 justify-start items-center">
-            <span className={`${dancingScript?.className} text-3xl`}>verb</span>
-            <hr className="w-full mt-2"></hr>
+          <WordMeanings meanings={result?.meanings} />
+          <hr />
+          <div className="flex gap-3 items-center">
+            <h5 className="text-[18px] text-gray-400 font-serif">Source</h5>
+            {result?.sourceUrls?.map((url) => (
+              <Link
+                className="underline flex gap-1 items-center dark:text-blue-600 text-gray-600"
+                href={url}
+              >
+                {url}
+                <IoExitOutline className="text-lg font-semibold" />
+              </Link>
+            ))}
           </div>
         </div>
       ) : (

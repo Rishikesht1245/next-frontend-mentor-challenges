@@ -23,7 +23,9 @@ export default function RootLayout({
   ];
   return (
     <html lang="en">
-      <body className={`${inter.className} flex min-h-screen flex-row w-full`}>
+      <body
+        className={`${inter.className} flex min-h-screen max-h-screen flex-row w-full`}
+      >
         {/* this will be common to all pages */}
         <header className="w-[280px] h-screen bg-[#21130d] dark:bg-black flex flex-col justify-start items-start">
           <Link className="text-white text-xl p-4 font-bold" href={"/"}>

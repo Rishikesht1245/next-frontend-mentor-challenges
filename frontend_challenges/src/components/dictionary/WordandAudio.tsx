@@ -10,12 +10,12 @@ const WordandAudio = ({ word, phonetics }: IWordandAudio) => {
     }
   };
 
-  console.log(playAudio, "== pudid");
-  console.log(phonetics[0]?.audio, "=== audio");
   return (
     <div className="flex justify-between items-center">
       <div className="flex flex-col gap-0">
-        <h1 className="text-4xl font-semibold tracking-wide">{word}</h1>
+        <h1 className="text-4xl font-semibold tracking-wide dark:text-white">
+          {word}
+        </h1>
         <span className="text-violet-500">{phonetics[0]?.text}</span>
       </div>
       <div className="rounded-full p-4 bg-violet-200 flex items-center justify-center">
